@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-model</title>
+</head>
+<body>
+    <h1>v-model原理</h1>
+    <!-- 1.双向数据绑定 -->
+    <input placeholder="请输入" id="username">
+    显示值：<p id="uName"></p>
+
+    <script>
+
+        let obj = {}
+        Object.defineProperty(obj,'username',{
+            //取值
+            get :function() {
+                console.log('取值')
+            },
+            set: function(val) {
+                console.log("设置值",val)
+                document.getElementById('uName').innerText = val
+            }
+        })
+
+        document.getElementById('username').addEventListener("keyup",function(){
+            //event
+          obj.username =  event.target.value
+        })
+    </script>
+
+
+
+</body>
+</html>

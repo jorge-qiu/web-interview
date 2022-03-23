@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>es6面试题</title>
+</head>
+<body>
+    <h1>es6面试题</h1>
+    
+    <script>
+    // var let const 
+    //1. 声明提升 => 先上车后买票
+    // console.log(num)
+    // var num = 123
+    
+    //2. 变量覆盖
+    // var num1 = 12
+    // var num1 = 22
+    // console.log(num1)
+
+    //3.没有块级作用域
+    // function fn2() {
+    //     for(let i=0;i<3;i++){
+    //         console.log(i)
+    //     }
+    //     console.log(i)
+    // }
+
+    // fn2()
+    
+    
+    //1. const 声明之后必须赋值
+    //2. const 定义的值 不能修改，否则报错
+    //3. 支持Let的其他属性
+
+    // const demo = 123
+    // demo = 456
+
+
+    //解构相关
+    // let a = 1;
+    // let b = 2;
+    // [a,b] = [b,a]
+
+
+    //快速去重
+    // let arr = [12,43,23,12,22,55]
+    // let item = [...new Set(arr)]
+
+
+    //promise
+    //构造函数 同步执行
+    // const promise = new Promise((resolve,reject)=>{
+    //     console.log(1)
+    //     resolve();
+    //     console.log(2)
+    // })
+    // promise.then(()=>{
+    //     console.log(3)
+    // })
+    // console.log(4)
+
+
+
+    </script>
+
+
+
+</body>
+</html>

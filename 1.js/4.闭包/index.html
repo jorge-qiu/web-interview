@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>闭包</title>
+</head>
+<body>
+    <h1>闭包</h1>
+    <script>
+    //1.闭包是什么？---方法返回一个方法
+    // function a() {
+    //     let a1 = 1
+    //     return function() {
+    //         return a1
+    //     }
+    // }
+
+    //2.闭包存在的意义？
+    //2.1 延长变量的生命周期
+    //2.2 创建私有环境
+
+    // let a = '小明'
+    // function f1() {
+    //     let b = 1
+    //     console.log(a)
+    // }
+    // console.log(b)
+    // f1()
+
+
+    //作用域链
+    // let name = 'xiaoming'
+    // function fn2() {
+    //     let name = '小白'
+    //     function fn3() {
+    //         let name = '小红'
+    //         console.log(name)
+    //     }
+    //     fn3()
+    // }
+    // fn2()
+
+    //沟通内外部方法桥梁
+    // function outer() {
+    //     let a1 = 111
+    //     let a2 = 222
+    //     return function inner() {
+    //         return a1
+    //     }
+    // }
+
+
+    // function fn5() {
+    //     let getInnerData = outer()
+    //     console.dir(getInnerData)
+    // }
+    // fn5()
+
+    //闭包会常驻内存=== 慎用闭包
+
+    //vue中的data为什么是个函数？
+    //闭包创建私有环境
+
+
+    let makeCounter = function() {
+        let num = 0;
+        function changeBy(val) {
+            num += val
+        }
+        return {
+            add:function(){
+                changeBy(1)
+            },
+            reduce:function(){
+                changeBy(-1)
+            },
+            value:function() {
+                return num
+            }
+        }
+    }
+
+    let counter1 = makeCounter()
+    let counter2 = makeCounter()
+
+    // console.log(counter1.value())
+    counter1.add()
+    counter1.add()
+
+
+    counter2.add()
+    console.log(counter1.value())
+    console.log(counter2.value())
+
+
+    //都拥有独立的词法作用域
+    //面向对象编程  -----  数据的隐藏和封装
+
+    </script>
+
+
+
+</body>
+</html>
