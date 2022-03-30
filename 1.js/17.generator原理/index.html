@@ -4,56 +4,60 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>原型原型链</title>
+    <title>generator原理</title>
 </head>
 <body>
-    <h2>原型原型链</h2>
+    <h2>generator原理</h2>
 
 
 
 
     <script>
-        // 1.用于继承
-
-        // let obj = {}
-        // let fn = function fn() {
-
+        // function * foo(){
+        //     console.log('zce')
+        //     return 100
         // }
 
+        // const result = foo()
+        // console.log(result)
 
-        // console.dir(obj)
-        // console.dir(fn)
-        
-        function Person() {
+        // function * foo() {
+        //     console.log('1111')
+        //     yield 100
+        //     console.log('2222')
+        //     yield 200
+        //     console.log('3333')
+        //     yield 300
+        // }
 
-        }
+        // const generator = foo()
 
-        Person.prototype.name = 'xiaoming'
-        Person.prototype.age = 18
-        Person.prototype.getAge = function(){
-            console.log(this.age)
-        }
-
-        //实例
-        let person1 = new Person()
-        person1.age = 28
-        person1.demo = 'demo1'
-        console.log(person1)
-        person1.getAge()
-
-        // 从当前实例属性去查找，如果找到了就返回，否则顺着原型链一层一层往上找
-        // 直到找到null为止  如果null都没找到，报错
+        // console.log(generator.next())
+        // console.log(generator.next())
+        // console.log(generator.next())
 
 
-        //查找自身私有属性
-        let item;
-        for(item in person1){
-            if(person1.hasOwnProperty(item)) {
-                console.log(item)
-            }
-        }
 
-        //实例对象的_proto_指向构造函数的原型 构造函数的原型指向上一级 以此往上 就是原型链
+        //案例1:
+        //发号器
+        // function * createIdMaker() {
+        //     let id = 1;
+        //     while(true) {
+        //         yield id++
+        //     }
+        // }
+
+        // const idMaker = createIdMaker()
+        // console.log(idMaker.next().value)
+        // console.log(idMaker.next().value)
+        // console.log(idMaker.next().value)
+        // console.log(idMaker.next().value)
+
+
+        //对象的
+
+
+
 
     </script>
 
