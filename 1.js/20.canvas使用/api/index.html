@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvas画布截图</title>
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+    <canvas id="canvas2"></canvas>
+    <script type="module">
+        var arr = [
+            './imgs/WeChat16296b6195a575789914b9462102f6f9.png',
+            './imgs/WeChat6475af1c123bcd3dd35516be1a3d84ff.png',
+            './imgs/WeChat85992b33933d4a8bb697cff717b75ac3.png',
+            './imgs/WeChat9cd9491c21f4609060bdb4dd6105a7c5.png',
+            './imgs/WeChatad143fc1f8343761a9a1d6fc6c510162.png',
+            './imgs/WeChatb90469d3b2a9d1e2bc7d85f11ca391e2.png'
+        ]
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+        //375*500
+        ctx.fillStyle = '#333333'
+        var img = new Image()
+        img.src = arr[3]
+        img.setAttribute('crossOrigin', 'anonymous')
+
+        var obj = {
+            w: 400,
+            h: 400
+        }
+
+        img.onload = (e) => {
+            const sx = e.target.width / obj.w
+            const sy = e.target.height / obj.h
+            const sxy = sx > sy ? sy : sx
+            const cutx = e.target.width - obj.w * sxy
+            const cuty = e.target.height - obj.h * sxy
+            canvas.setAttribute('width', e.target.width)
+            canvas.setAttribute('height', e.target.height)
+            ctx.drawImage(img, 0, 0, e.target.width, e.target.height)
+
+            var imageData = ctx.getImageData(cutx / 2, cuty / 2, obj.w*sxy, obj.h*sxy)
+
+            var canvas2 = document.getElementById('canvas2');
+            canvas2.width = obj.w * sxy
+            canvas2.height = obj.h * sxy
+            var ctx2 = canvas2.getContext('2d');
+            ctx2.putImageData(imageData, 0, 0);
+        }
+
+    </script>
+</body>
+
+</html>
