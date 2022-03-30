@@ -30,25 +30,32 @@
 
         var obj = {
             w: 400,
-            h: 400
+            h: 200
         }
 
         img.onload = (e) => {
-            const sx = e.target.width / obj.w
-            const sy = e.target.height / obj.h
-            const sxy = sx > sy ? sy : sx
-            const cutx = e.target.width - obj.w * sxy
-            const cuty = e.target.height - obj.h * sxy
+            // const sx = obj.w / e.target.width
+            // const sy = obj.h / e.target.height
+            // const sxy = sx > sy ? 1 / sy : 1 / sx
+
+            // const cutx = Math.abs(e.target.width - obj.w * sxy)
+            // const cuty = Math.abs(e.target.height - obj.h * sxy)
+
+            const cutx = e.target.width - obj.w
+            const cuty = e.target.height - obj.h
+
+
             canvas.setAttribute('width', e.target.width)
             canvas.setAttribute('height', e.target.height)
             ctx.drawImage(img, 0, 0, e.target.width, e.target.height)
 
-            var imageData = ctx.getImageData(cutx / 2, cuty / 2, obj.w*sxy, obj.h*sxy)
+            var imageData = ctx.getImageData(cutx / 2, cuty / 2, obj.w, obj.h)
 
             var canvas2 = document.getElementById('canvas2');
-            canvas2.width = obj.w * sxy
-            canvas2.height = obj.h * sxy
+            canvas2.width = obj.w
+            canvas2.height = obj.h
             var ctx2 = canvas2.getContext('2d');
+
             ctx2.putImageData(imageData, 0, 0);
         }
 
