@@ -9,9 +9,11 @@ class Vue {
         //3.调用observer对象，监听数据变化
         new Observer(this.$data);
         //4.调用compiler对象，解析指令和差值表达式
+        new Compiler(this)
     };
 
     _proxyData(data) {
+        console.log('_proxyData');
         //遍历data中所有属性
         Object.keys(data).forEach(key => {
             Object.defineProperty(this, key, {
