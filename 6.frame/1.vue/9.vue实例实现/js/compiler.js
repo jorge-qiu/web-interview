@@ -41,17 +41,23 @@ class Compiler {
 
     update(node, key, attrName) {
         let updateFn = this[attrName + 'Updater']
-        updateFn && updateFn(node, this.vm[key])
+        updateFn && updateFn.call(this, node, this.vm[key], key)
     };
 
     //处理v-text 指令
-    textUpdater(node, value) {
+    textUpdater(node, value, key) {
         node.textContent = value;
+        new Watcher(this.vm, key, (newValue) => {
+            node.textContent = newValue;
+        });
     };
 
     //处理v-model
-    modelUpdater(node, value) {
+    modelUpdater(node, value, key) {
         node.value = value;
+        new Watcher(this.vm, key, (newValue) => {
+            node.value = newValue;
+        });
     };
 
 
@@ -63,7 +69,12 @@ class Compiler {
         if (reg.test(value)) {
             let key = RegExp.$1.trim();
             node.textContent = value.replace(reg, this.vm[key]);
+            //创建watcher对象
+            new Watcher(this.vm, key, (newValue) => {
+                node.textContent = newValue;
+            })
         }
+
     };
 
     //判断元素属性是否是指令
