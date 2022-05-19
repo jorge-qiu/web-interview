@@ -1,63 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>原型原型链</title>
-</head>
-<body>
-    <h2>原型原型链</h2>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>flex布局</title>
+  </head>
+  <body>
+    <h1>flex布局</h1>
+    <div class="container">
+        <div style="width:100px" class="demo1">1</div>
+        <div style="width:50px" class="demo1">2</div>
+        <div style="width:120px" class="demo1">3</div>
+        <div style="order:111"  style="width:80px" class="demo1">111</div>
+        <div class="demo1">2</div>
+        <div class="demo1">3</div>
+        <div class="demo1">1</div>
+        <div class="demo1">2</div>
+        <div class="demo1">3</div>
+        <div class="demo1">1</div>
+        <div class="demo1">2</div>
+        <div style="order:1" class="demo1">22</div>
+        <div class="demo1">1</div>
+        <div style="order:3" class="demo1">33</div>
+        <div class="demo1">3</div>
+    </div>
+    <h1>flex-flow属性是flex-direction属性和flex-wrap属性的简写形式，默认值为row nowrap。</h1>
+    <h1>flex-grow属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大</h1>
+    <h2>如果所有项目的flex-grow属性都为1，则它们将等分剩余空间（如果有的话）。如果一个项目的flex-grow属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍</h2>
+    <h1>flex-shrink属性定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小</h1>
+    <h2>如果所有项目的flex-shrink属性都为1，当空间不足时，都将等比例缩小。如果一个项目的flex-shrink属性为0，其他项目都为1，则空间不足时，前者不缩小</h2>
+    <div class="content">
+        <div style="flex-grow:1" class="item"></div>
+        <div style="flex-shrink:0" class="item"></div>
+        <div style="flex-grow:1" class="item"></div>
+        <div  class="item"></div>
+    </div>
 
+    <h1>三列布局</h1>
+    <div class="treeLayOut">
+        <div class="layout1"></div>
+        <div class="layout2"></div>
+        <div class="layout3"></div>
+    </div>
 
-
-
-    <script>
-        // 1.用于继承
-
-        // let obj = {}
-        // let fn = function fn() {
-
-        // }
-
-
-        // console.dir(obj)
-        // console.dir(fn)
-        
-        function Person() {
-
+    <style>
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            /* flex-direction: row-reverse; */
+            align-content: center;
         }
-
-        Person.prototype.name = 'xiaoming'
-        Person.prototype.age = 18
-        Person.prototype.getAge = function(){
-            console.log(this.age)
+        .demo1 {
+            width: 100px;
+            height: 100px;
+            background: red;
+            margin: 20px;
         }
-
-        //实例
-        let person1 = new Person()
-        person1.age = 28
-        person1.demo = 'demo1'
-        console.log(person1)
-        person1.getAge()
-
-        // 从当前实例属性去查找，如果找到了就返回，否则顺着原型链一层一层往上找
-        // 直到找到null为止  如果null都没找到，报错
-
-
-        //查找自身私有属性
-        let item;
-        for(item in person1){
-            if(person1.hasOwnProperty(item)) {
-                console.log(item)
-            }
+        .content {
+            display: flex;
+            justify-content: center;
+            border: 5px solid rebeccapurple;
+            align-items: center;
         }
+        .item {
+            width: 100px;
+            height: 100px;
+            background-color: aqua;
+            margin: 20px;
+        }
+        .treeLayOut {
+            display: flex;
+        }
+        .layout1 {
+            flex-grow: 1;
+            width:200px;
+            background: darkcyan;
+            height: 200px;
+            margin: 20px;
+        }
+        .layout2 {
+            width:200px;
+            background: darkcyan;
+            height: 200px;
+            margin: 20px;
+        }
+        .layout3 {
+            width:200px;
+            background: darkcyan;
+            height: 200px;
+            margin: 20px;
+        }
+    </style>
 
-        //实例对象的_proto_指向构造函数的原型 构造函数的原型指向上一级 以此往上 就是原型链
-
-    </script>
-
-
-
-</body>
+  </body>
 </html>

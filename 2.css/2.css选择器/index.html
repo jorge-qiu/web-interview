@@ -1,63 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>原型原型链</title>
-</head>
-<body>
-    <h2>原型原型链</h2>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS选择器</title>
+  </head>
+  <body>
+    <h1>CSS选择器</h1>
+    <p>
+        <h1>
+            CSS 伪类（pseudo-class） 是一个以冒号(:)作为前缀的关键字，当你希望样式在特定状态下才被呈现到指定的元素时，你可以往元素的选择器后面加上对应的伪类（pseudo-class）
+            :active
+            :any
+            :checked
+            :default
+            :dir()
+            :disabled
+            :empty
+            :enabled
+            :first
+            :first-child
+            :first-of-type
+            :fullscreen
+            :focus
+            :hover
+            :indeterminate
+            :in-range
+            :invalid
+            :lang()
+            :last-child
+            :last-of-type
+            :left
+            :link
+            :not()
+            :nth-child()
+            :nth-last-child()
+            :nth-last-of-type()
+            :nth-of-type()
+            :only-child
+            :only-of-type
+            :optional
+            :out-of-range
+            :read-only
+            :read-write
+            :required
+            :right
+            :root
+            :scope
+            :target
+            :valid
+            :visited
+        </h1>
+        <h1>
+            伪元素（Pseudo-element）跟伪类很像，但它们又有不同的地方。它们都是关键字 —— 但这次伪元素前缀是两个冒号 (::) —— 同样是添加到选择器后面达到指定某个元素的某个部分
+            ::after
+            ::before
+            ::first-letter
+            ::first-line
+            ::selection
+            ::backdrop
+        </h1>
+    </p>
+    <section>
+      <h2>Heading 1</h2>
+      <p>Paragraph 1</p>
+      <p>Paragraph 2</p>
+      <div>
+        <h2>Heading 2</h2>
+        <p>Paragraph 3</p>
+        <p>Paragraph 4</p>
+      </div>
+    </section>
 
+    <style>
+      section p {
+        color: blue;
+      }
 
+      section > p {
+        background-color: yellow;
+      }
 
+      h2 + p {
+        text-transform: uppercase;
+      }
 
-    <script>
-        // 1.用于继承
-
-        // let obj = {}
-        // let fn = function fn() {
-
-        // }
-
-
-        // console.dir(obj)
-        // console.dir(fn)
-        
-        function Person() {
-
-        }
-
-        Person.prototype.name = 'xiaoming'
-        Person.prototype.age = 18
-        Person.prototype.getAge = function(){
-            console.log(this.age)
-        }
-
-        //实例
-        let person1 = new Person()
-        person1.age = 28
-        person1.demo = 'demo1'
-        console.log(person1)
-        person1.getAge()
-
-        // 从当前实例属性去查找，如果找到了就返回，否则顺着原型链一层一层往上找
-        // 直到找到null为止  如果null都没找到，报错
-
-
-        //查找自身私有属性
-        let item;
-        for(item in person1){
-            if(person1.hasOwnProperty(item)) {
-                console.log(item)
-            }
-        }
-
-        //实例对象的_proto_指向构造函数的原型 构造函数的原型指向上一级 以此往上 就是原型链
-
-    </script>
-
-
-
-</body>
+      h2 ~ p {
+        border: 1px dashed black;
+      }
+    </style>
+  </body>
 </html>

@@ -106,8 +106,6 @@ var map = {
   },
 };
 
-function computedSum() {}
-
 var NOW_TIME = 20220515;
 
 function time(day) {

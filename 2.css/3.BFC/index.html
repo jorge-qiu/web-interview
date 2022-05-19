@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BFC</title>
+</head>
+<body>
+    <h1>BFC</h1>
+    <p>
+        <h2>BFC 即 Block Formatting Contexts (块级格式化上下文)，它属于上述定位方案的普通流</h2>
+        <ul>
+            <li>body 根元素</li>
+            <li>浮动元素：float 除 none 以外的值</li>
+            <li>绝对定位元素：position (absolute、fixed)</li>
+            <li>display 为 inline-block、table-cells、flex</li>
+            <li>overflow 除了 visible 以外的值 (hidden、auto、scroll)</li>
+        </ul>
+    </p>
+    <div><h2>1. 同一个 BFC 下外边距会发生折叠</h2></div>
+    <div class="container">
+        <div class="demo1"></div>
+    </div>
+    <div class="container">
+        <div class="demo1"></div>
+    </div>
+    <div><h2>2. BFC 可以包含浮动的元素（清除浮动）</h2></div>
+    <div style="border: 1px solid #000;">
+        <div style="width: 100px;height: 100px;background: #eee;float: left;"></div>
+    </div>
+    <p><h3>触发bfc</h3></p>
+    <div style="border: 1px solid #000;overflow: hidden">
+        <div style="width: 100px;height: 100px;background: #eee;float: left;"></div>
+    </div>
+    <div><h2>3. BFC 可以阻止元素被浮动元素覆盖</h2></div>
+    <div style="height: 100px;width: 100px;float: left;background: lightblue">我是一个左浮动的元素</div>
+    <div style="width: 200px; height: 200px;background: #eee">我是一个没有设置浮动, 
+        也没有触发 BFC 元素, width: 200px; height:200px; background: #eee;</div>
+    <p><h3>触发bfc</h3></p>
+    <div style="height: 100px;width: 100px;float: left;background: lightblue">我是一个左浮动的元素</div>
+    <div style="width: 200px; height: 200px;background: #eee;overflow: hidden;">我是一个没有设置浮动, 
+        也没有触发 BFC 元素, width: 200px; height:200px; background: #eee;</div>
+</body>
+<style>
+    .container {
+        overflow: hidden;
+    }
+    .demo1 {
+        width: 100px;
+        height: 100px;
+        background: lightblue;
+        margin: 100px;
+    }
+</style>
+</html>

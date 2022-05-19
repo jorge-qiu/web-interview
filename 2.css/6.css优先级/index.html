@@ -4,60 +4,40 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>原型原型链</title>
+    <title>CSS优先选择器</title>
 </head>
 <body>
-    <h2>原型原型链</h2>
-
-
-
-
-    <script>
-        // 1.用于继承
-
-        // let obj = {}
-        // let fn = function fn() {
-
-        // }
-
-
-        // console.dir(obj)
-        // console.dir(fn)
-        
-        function Person() {
-
-        }
-
-        Person.prototype.name = 'xiaoming'
-        Person.prototype.age = 18
-        Person.prototype.getAge = function(){
-            console.log(this.age)
-        }
-
-        //实例
-        let person1 = new Person()
-        person1.age = 28
-        person1.demo = 'demo1'
-        console.log(person1)
-        person1.getAge()
-
-        // 从当前实例属性去查找，如果找到了就返回，否则顺着原型链一层一层往上找
-        // 直到找到null为止  如果null都没找到，报错
-
-
-        //查找自身私有属性
-        let item;
-        for(item in person1){
-            if(person1.hasOwnProperty(item)) {
-                console.log(item)
-            }
-        }
-
-        //实例对象的_proto_指向构造函数的原型 构造函数的原型指向上一级 以此往上 就是原型链
-
-    </script>
-
-
-
+    <h1>CSS优先选择器</h1>
+    <h2>权重记忆口诀：从0开始，一个行内样式+1000，一个id选择器+100，一个属性选择器、class或者伪类+10，一个元素选择器，或者伪元素+1，通配符+0。</h2>
+    <div style="background: #000" class="demo1"></div>
+    <h1>!important > 行内样式 > 内联样式 and 外联样式</h1>
+    <div class="demo2">
+        <ul>
+            <p>总结</p>
+            <li>常用选择器权重优先级：!important > id > class > tag</li>
+            <li>!important可以提升样式优先级，但不建议使用。如果!important被用于一个简写的样式属性，那么这条简写的样式属性所代表的子属性都会被应用上!important。 例如：background: blue !important</li>
+            <li>如果两条样式都使用!important，则权重值高的优先级更高</li>
+            <li>在css样式表中，同一个CSS样式你写了两次，后面的会覆盖前面的</li>
+            <li>样式指向同一元素，权重规则生效，权重大的被应用</li>
+            <li>样式指向同一元素，权重规则生效，权重相同时，就近原则生效，后面定义的被应用</li>
+            <li>样式不指向同一元素时，权重规则失效，就近原则生效，离目标元素最近的样式被应用</li>
+        </ul>
+    </div>
 </body>
+<style>
+    div {
+        background: blue !important;
+    }
+    .demo1 {
+        background: red;
+        width: 100px;
+        height: 100px;
+		background-color: green !important;
+    }
+    .demo2 {
+		background-color: #3f3f3f !important;
+        color: #fff;
+        padding: 20px;
+    }
+</style>
 </html>
