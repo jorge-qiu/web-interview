@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>双飞&圣杯布局</title>
+</head>
+<body>
+    <h1>双飞翼布局</h1>
+    <div class="header">头部</div>
+    <div class="main clearfix">
+        <div class="center">中间自适应</div>
+        <div class="left">左列定宽</div>
+        <div class="right">右列定宽</div>
+    </div>
+    <div class="footer">底部</div>
+
+    <script>
+        // 注意：我们没有给 main 设置高度，它的高度本来是由里边的子元素（center、left、right） 撑起来的。
+        // 但是现在子元素都设置了浮动，脱离了文档流，所以 main 的高度又变成了0，所以 footer 元素会往上跑，被浮动元素盖住。
+    </script>
+    <style>
+        * {
+          margin: 0;
+          padding: 0;
+        }
+        .header {
+            height: 40px;
+            background: lightblue;
+        }
+        .footer {
+            height: 100px;
+            background: lightcoral;
+        }
+        .main {
+            margin-left: 200px;
+            margin-right: 300px;
+        }
+        .clearfix::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+        .main .center {
+            width: 100%;
+            height: 500px;
+            background: lightgray;
+            float: left;
+        }
+        .main .left {
+            width: 200px;
+            height: 500px;
+            background: lightpink;
+            float: left;
+            margin-left: -100%;
+            position: relative;
+            left: -200px;
+        }
+        .main .right {
+            width: 300px;
+            height: 500px;
+            background: limegreen;
+            float: left;
+            margin-left: -300px;
+            position: relative;
+            right: -300px;
+        }
+        
+      </style>
+    
+</body>
+</html>
