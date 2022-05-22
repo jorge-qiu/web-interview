@@ -4,60 +4,149 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>原型原型链</title>
+    <title>CSS3新特性</title>
 </head>
 <body>
-    <h2>原型原型链</h2>
+    <h1>CSS3新特性</h1>
+    <h2 style="color:red">transition： CSS属性，花费时间，效果曲线(默认ease)，延迟时间(默认0)</h2>
+    <p>例子1</p>
+    <h3>/*宽度从原始值到制定值的一个过渡，运动曲线ease,运动时间0.5秒，0.2秒后执行过渡*/
+        transition：width,.5s,ease,.2s</h3>
+    <p>例子2</p>
+    <h3>/*所有属性从原始值到制定值的一个过渡，运动曲线ease,运动时间0.5秒*/
+        transition：all,.5s</h3>
 
-
-
-
-    <script>
-        // 1.用于继承
-
-        // let obj = {}
-        // let fn = function fn() {
-
-        // }
-
-
-        // console.dir(obj)
-        // console.dir(fn)
         
-        function Person() {
+    <div><button class="demot">demo-transition</button></div>
+    <div><button class="demo1">demo</button></div>
 
-        }
+    <div class="demo-hover demo-ul t_c">
+        <ul class="fllil">
+            <li>
+                <a href="javascript:;">html</a>
+                <ul>
+                    <li><a href="#">div</a></li>
+                    <li><a href="#">h1</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">js</a>
+                <ul>
+                    <li><a href="#">string</a></li>
+                    <li><a href="#">array</a></li>
+                    <li><a href="#">object</a></li>
+                    <li><a href="#">number</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">css3</a>
+                <ul>
+                    <li><a href="#">transition</a></li>
+                    <li><a href="#">animation</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">框架</a>
+                <ul>
+                    <li><a href="#">vue</a></li>
+                    <li><a href="#">react</a></li>
+                </ul>
+            </li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+    <div class="demo-hover demo-ul ul-transition t_c">
+        <ul class="fllil">
+            <li>
+                <a href="javascript:;">html</a>
+                <ul>
+                    <li><a href="#">div</a></li>
+                    <li><a href="#">h1</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">js</a>
+                <ul>
+                    <li><a href="#">string</a></li>
+                    <li><a href="#">array</a></li>
+                    <li><a href="#">object</a></li>
+                    <li><a href="#">number</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">css3</a>
+                <ul>
+                    <li><a href="#">transition</a></li>
+                    <li><a href="#">animation</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">框架</a>
+                <ul>
+                    <li><a href="#">vue</a></li>
+                    <li><a href="#">react</a></li>
+                </ul>
+            </li>
+        </ul>
+        <div class="clear"></div>
+    </div>
 
-        Person.prototype.name = 'xiaoming'
-        Person.prototype.age = 18
-        Person.prototype.getAge = function(){
-            console.log(this.age)
-        }
 
-        //实例
-        let person1 = new Person()
-        person1.age = 28
-        person1.demo = 'demo1'
-        console.log(person1)
-        person1.getAge()
-
-        // 从当前实例属性去查找，如果找到了就返回，否则顺着原型链一层一层往上找
-        // 直到找到null为止  如果null都没找到，报错
-
-
-        //查找自身私有属性
-        let item;
-        for(item in person1){
-            if(person1.hasOwnProperty(item)) {
-                console.log(item)
-            }
-        }
-
-        //实例对象的_proto_指向构造函数的原型 构造函数的原型指向上一级 以此往上 就是原型链
-
-    </script>
-
-
-
+    
 </body>
+
+<style>
+    .demot {
+        transition: all .5s;
+        height: 100px;
+    }
+    .demo1 {
+        height: 100px;
+    }
+    .demot:hover{
+        background: lightcoral;
+    }
+    .demo1:hover{
+        background: lightcoral;
+    }
+
+    .fllil {
+        display: flex;
+    }
+
+    .demo-ul{margin-bottom: 300px;}
+    .demo-ul li{
+        padding: 0 10px;
+        width: 100px;
+        background: #f90;
+        position: relative;
+    }
+    .demo-ul li a{
+        display: block;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+    }
+    .demo-ul li ul{
+        position: absolute;
+        width: 100%;
+        top: 40px;
+        left: 0;
+        transform: scaleY(0);
+        overflow: hidden;
+    }
+    .ul-transition ul{
+        transform-origin: 0 0;
+        transition: all .5s;
+    }
+    .demo-ul li:hover ul{
+        transform: scaleY(1);
+    }
+    .demo-ul li ul li{
+        float: none;
+        background: #0099ff;
+
+}
+</style>
+
 </html>
