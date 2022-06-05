@@ -1,63 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>原型原型链</title>
-</head>
-<body>
-    <h2>原型原型链</h2>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>div居中</title>
+  </head>
+  <body>
+    <div class="content">
+      <div class="content1">
+        <h1>1.flex布局实现（元素宽度已知）</h1>
+        <div class="box1">
+          <div class="demo1"></div>
+        </div>
+        <h1>2. position （元素已知宽度）</h1>
+        <div class="box2">
+          <div class="demo2"></div>
+        </div>
+        <div class="box2">
+          <div class="demo3">demo3</div>
+        </div>
+        <h1>
+          3.position（元素已知宽度）（left，right，top，bottom为0，maigin：auto
+          ）
+        </h1>
+        <div class="box4">
+          <div class="demo4"></div>
+        </div>
+        <h1>4.table-cell 布局实现</h1>
+        <div class="box5">
+          <div class="demo5"></div>
+        </div>
+      </div>
+      <div class="content2">
+        <h1>使内容（文字，图片）水平垂直居中（table-cell 布局）</h1>
+        <div class="box6">
+          <div class="demo6">文字水平垂直居中</div>
+        </div>
+        <h1>
+          父级设置 display : table，子集设置 display：tablecell ，子集会充满全屏
+        </h1>
+        <div class="box7">
+          <div class="demo7">文字充满</div>
+        </div>
+        <h1>图片水平垂直居中</h1>
+        <div class="box8">
+          <img src="./1.png" alt="" />
+        </div>
+        <h1>元素两端垂直对齐</h1>
+        <div class="box9">
+          <div class="left">
+            <p>我是左边</p>
+          </div>
+          <div class="center">
+            <p>我是中间</p>
+          </div>
+          <div class="right">
+            <p>我是右边</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
-
-
-
-    <script>
-        // 1.用于继承
-
-        // let obj = {}
-        // let fn = function fn() {
-
-        // }
-
-
-        // console.dir(obj)
-        // console.dir(fn)
-        
-        function Person() {
-
-        }
-
-        Person.prototype.name = 'xiaoming'
-        Person.prototype.age = 18
-        Person.prototype.getAge = function(){
-            console.log(this.age)
-        }
-
-        //实例
-        let person1 = new Person()
-        person1.age = 28
-        person1.demo = 'demo1'
-        console.log(person1)
-        person1.getAge()
-
-        // 从当前实例属性去查找，如果找到了就返回，否则顺着原型链一层一层往上找
-        // 直到找到null为止  如果null都没找到，报错
-
-
-        //查找自身私有属性
-        let item;
-        for(item in person1){
-            if(person1.hasOwnProperty(item)) {
-                console.log(item)
-            }
-        }
-
-        //实例对象的_proto_指向构造函数的原型 构造函数的原型指向上一级 以此往上 就是原型链
-
-    </script>
-
-
-
-</body>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      .content {
+        display: flex;
+      }
+      .demo1 {
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+      }
+      .box1 {
+        width: 300px;
+        height: 300px;
+        background-color: #ccc;
+        display: flex;
+        display: -webkit-flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .demo2 {
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin: -50px 0 0 -50px;
+      }
+      .demo3 {
+        background-color: blue;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .box2 {
+        position: relative;
+        background-color: red;
+        width: 300px;
+        height: 300px;
+        margin: 20px 0;
+      }
+      .box4 {
+        position: relative;
+        background-color: red;
+        width: 300px;
+        height: 300px;
+        margin: 20px 0;
+      }
+      .demo4 {
+        background-color: blue;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        width: 100px;
+        height: 100px;
+      }
+      .box5 {
+        display: table-cell;
+        vertical-align: middle;
+        background-color: red;
+        width: 300px;
+        height: 300px;
+        margin: 20px 0;
+      }
+      .demo5 {
+        background-color: blue;
+        margin-left: 100px;
+        width: 100px;
+        height: 100px;
+      }
+      .box6 {
+        width: 300px;
+        height: 300px;
+        background-color: red;
+        display: table-cell;
+        text-align: center; /*使元素水平居中 */
+        vertical-align: middle; /*使元素垂直居中 */
+      }
+      .box7 {
+        width: 300px;
+        height: 300px;
+        background-color: red;
+        display: table;
+      }
+      .demo7 {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+        background-color: blue;
+      }
+      .box8 {
+        width: 300px;
+        height: 300px;
+        background-color: skyblue;
+        display: table-cell;
+        text-align: center;
+        vertical-align: middle;
+      }
+      img {
+        /* 设置成块元素后，text-align：center 就会失效 */
+        width: 100px;
+        height: 100px;
+      }
+      .box9 {
+        display: table;
+        width: 90%;
+        margin: 10px auto;
+        padding: 10px;
+        border: 1px solid green;
+        height: 100px;
+      }
+      .left,
+      .right {
+        display: table-cell;
+        width: 20%;
+        border: 1px solid red;
+      }
+      .center {
+        /* padding-top: 10px; */
+        height: 100px;
+        background-color: green;
+      }
+    </style>
+  </body>
 </html>
