@@ -1,63 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>继承</title>
-</head>
-<body>
+  </head>
+  <body>
     <h2>继承</h2>
 
-
-
-
     <script>
-        // 1.用于继承
+      //1.原型链继承
+      function Parent() {
+        this.name = "p";
+      }
+      Parent.prototype.getName = function () {
+        console.log(this.name);
+      };
+      function Child() {}
 
-        // let obj = {}
-        // let fn = function fn() {
+      Child.prototype = new Parent();
+      var child1 = new Child();
 
-        // }
+      console.log(child1.getName());
 
+      //2. 借用构造函数（经典继承）
+      function Parent1() {
+        this.names = ["1", "2"];
+      }
 
-        // console.dir(obj)
-        // console.dir(fn)
-        
-        function Person() {
+      function demo_child() {
+        Parent1.call(this);
+      }
 
-        }
+      var demo_child1 = new demo_child();
 
-        Person.prototype.name = 'xiaoming'
-        Person.prototype.age = 18
-        Person.prototype.getAge = function(){
-            console.log(this.age)
-        }
+      demo_child1.names.push("3");
+      console.log(demo_child1.names);
+      var demo_child2 = new demo_child();
+      console.log(demo_child2.names);
 
-        //实例
-        let person1 = new Person()
-        person1.age = 28
-        person1.demo = 'demo1'
-        console.log(person1)
-        person1.getAge()
+      //3.组合继承
+      function demo3_Parent(name) {
+        this.name = name;
+        this.num = [1, 2, 3];
+      }
 
-        // 从当前实例属性去查找，如果找到了就返回，否则顺着原型链一层一层往上找
-        // 直到找到null为止  如果null都没找到，报错
+      demo3_Parent.prototype.getName = function () {
+        console.log(this.name);
+      };
 
-
-        //查找自身私有属性
-        let item;
-        for(item in person1){
-            if(person1.hasOwnProperty(item)) {
-                console.log(item)
-            }
-        }
-
-        //实例对象的_proto_指向构造函数的原型 构造函数的原型指向上一级 以此往上 就是原型链
-
+      function demo3_child(name, age) {
+        Parent.call(this, name);
+        this.age = age;
+      }
     </script>
-
-
-
-</body>
+  </body>
 </html>

@@ -7,21 +7,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>原型原型链</title>
 </head>
-
 <body>
-    <div class="question one">
-        <h1>1.什么是原型，原型链？</h1>
-        <div><p></p></div>
+    <h1>1.什么是原型，原型链</h1>
+    <div>每一个javascript对象在创建的时候就会与之关联另外一个对象，这个对象就是我们说的原型</div>
+    <div>
+        <div>构造函数：汽车品牌商</div>
+        <div>实例原型：小轿车</div>
+        <div>实例：某品牌小轿车（A4l,c200,320li）</div>
     </div>
-    <div class="question two">
-        <h1>2.简单总结什么是原型，原型链</h1>
-    </div>
-    <div class="question three">
-        <h1>3.教授给外行人，怎么让他一听就明白什么是原型，原型链</h1>
-    </div>
-
-
-
+    <div>每一辆小轿车在生产出来的时候，都会遵循小轿车的生产标准</div>
+    <div>小轿车分为了奥迪，宝马，奔驰三大品牌的汽车生产商,但是他们首先都是小轿车(prototype)</div>
+    <div>每一辆小轿车都有一个标准（__proto__）,它是一辆小轿车</div>
+    <div>每一个品牌商都可以通过（constructor）标准生产自己的小汽车</div>
+    <div><img src="./prototype.png" alt=""></div>
+    <div>如果要查看为什么A4L会有4个轮子这个问题，那么可以往上查看，原来小轿车就是这么生产设计的，在往上汽车也是这么设计的</div>
+    <p><h1>原型原型链</h1></p>
+    <div><img src="./prototypeChain.png" alt=""></div>
     <script>
         // 1.用于继承
 
