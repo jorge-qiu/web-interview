@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>原型原型链</title>
 </head>
-<body>
-    <h2>原型原型链</h2>
 
+<body>
+    <div class="question one">
+        <h1>1.什么是原型，原型链？</h1>
+        <div><p></p></div>
+    </div>
+    <div class="question two">
+        <h1>2.简单总结什么是原型，原型链</h1>
+    </div>
+    <div class="question three">
+        <h1>3.教授给外行人，怎么让他一听就明白什么是原型，原型链</h1>
+    </div>
 
 
 
@@ -23,14 +33,14 @@
 
         // console.dir(obj)
         // console.dir(fn)
-        
+
         function Person() {
 
         }
 
         Person.prototype.name = 'xiaoming'
         Person.prototype.age = 18
-        Person.prototype.getAge = function(){
+        Person.prototype.getAge = function () {
             console.log(this.age)
         }
 
@@ -47,8 +57,8 @@
 
         //查找自身私有属性
         let item;
-        for(item in person1){
-            if(person1.hasOwnProperty(item)) {
+        for (item in person1) {
+            if (person1.hasOwnProperty(item)) {
                 console.log(item)
             }
         }
@@ -56,8 +66,27 @@
         //实例对象的_proto_指向构造函数的原型 构造函数的原型指向上一级 以此往上 就是原型链
 
     </script>
+    <style>
+        .question {
+            font-weight: bold;
+        }
 
+        .question,
+        .one {
+            color: red;
+        }
 
+        .question,
+        .two {
+            color: blue;
+        }
+
+        .question,
+        .three {
+            color: aquamarine;
+        }
+    </style>
 
 </body>
+
 </html>
