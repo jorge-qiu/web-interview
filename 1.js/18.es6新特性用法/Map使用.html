@@ -1,47 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Map使用</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <h1>Map使用</h1>
     <div class="demo"></div>
     <script>
-        var test1 = 1
-        var test2 = 2
-        var test3 = 3
-        const mapUse = new Map([
-            ['test1', test1 === 4],
-            ['test2', test2 === 1],
-            ['test3', test3 === 2],
-        ])
+      var test1 = 1;
+      var test2 = 2;
+      var test3 = 3;
+      const mapUse = new Map([
+        ["test1", test1 === 4],
+        ["test2", test2 === 1],
+        ["test3", test3 === 2],
+      ]);
 
-        const mapseek = map => {
-            if (!(map instanceof Map)) { throw new Error('请使用Map类型') }
-            for (let [key, value] of map.entries()) {
-                const b = typeof value === 'function' ? value() : value;
-                if (b) {
-                    return key
-                }
-            }
+      const mapseek = (map) => {
+        if (!(map instanceof Map)) {
+          throw new Error("请使用Map类型");
         }
-        console.log(mapseek(mapUse))
+        for (let [key, value] of map.entries()) {
+          const b = typeof value === "function" ? value() : value;
+          if (b) {
+            return key;
+          }
+        }
+      };
+      console.log(mapseek(mapUse));
+
+      const map = new Map();
+      const weakmap = new WeakMap();
+
+      console.log(map, weakmap, "222");
+      function test() {
+        const f = { foo: 1 };
+        const b = { bo: 2 };
+        map.set(f, 1);
+        weakmap.set(b, 2);
+      }
+
+      test();
+
+      console.log(map, weakmap, "2");
     </script>
     <style>
-        .demo {
-            width: 0px;
-            height: 0px;
-            border-top: 10px solid red;
-            border-right: 10px solid transparent;
-            border-bottom: 10px solid transparent;
-            border-left: 10px solid transparent;
-        }
+      .demo {
+        width: 0px;
+        height: 0px;
+        border-top: 10px solid red;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        border-left: 10px solid transparent;
+      }
     </style>
-</body>
-
+  </body>
 </html>
