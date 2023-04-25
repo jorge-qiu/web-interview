@@ -1,63 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>原型原型链</title>
-</head>
-<body>
-    <h2>原型原型链</h2>
-
-
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>promise</title>
+  </head>
+  <body>
+    <h2>promiseall</h2>
 
     <script>
-        // 1.用于继承
+      //promiseall 在遇到其中一个有错误时，就会停止执行任务
 
-        // let obj = {}
-        // let fn = function fn() {
+      // 代码 解决：在catch里面resolve就行了
+      // 测试了下 解决方式还能实现
+      var p1 = new Promise((resolve) => {
+        let p1Data = b;
+        resolve(p1Data);
+      }).catch((err) => {
+        return Promise.resolve("P1 无数据");
+      });
 
-        // }
+      var p2 = new Promise((resolve) => {
+        let p2Data = "p2的有数据";
+        resolve(p2Data);
+      }).catch((err) => {
+        return Promise.resolve("P2 无数据");
+      });
 
-
-        // console.dir(obj)
-        // console.dir(fn)
-        
-        function Person() {
-
-        }
-
-        Person.prototype.name = 'xiaoming'
-        Person.prototype.age = 18
-        Person.prototype.getAge = function(){
-            console.log(this.age)
-        }
-
-        //实例
-        let person1 = new Person()
-        person1.age = 28
-        person1.demo = 'demo1'
-        console.log(person1)
-        person1.getAge()
-
-        // 从当前实例属性去查找，如果找到了就返回，否则顺着原型链一层一层往上找
-        // 直到找到null为止  如果null都没找到，报错
-
-
-        //查找自身私有属性
-        let item;
-        for(item in person1){
-            if(person1.hasOwnProperty(item)) {
-                console.log(item)
-            }
-        }
-
-        //实例对象的_proto_指向构造函数的原型 构造函数的原型指向上一级 以此往上 就是原型链
-
+      Promise.all([p1, p2])
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          throw new Error("Promise 执行错误", err);
+        });
     </script>
-
-
-
-</body>
+  </body>
 </html>

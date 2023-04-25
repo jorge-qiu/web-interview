@@ -47,6 +47,13 @@
       test();
 
       console.log(map, weakmap, "2");
+
+      // weakSet和WeakMap
+      /**
+       * 1. 均不可被遍历
+       * 2. 只能存储对象引用，不能存放值 对象值都是被弱引用的，会被垃圾回收机制回收掉
+       * 3. WeakMap 弱引用的只是键名，而不是键值。键值依然是正常引用
+       */
     </script>
     <style>
       .demo {
