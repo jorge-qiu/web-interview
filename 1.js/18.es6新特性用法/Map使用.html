@@ -9,7 +9,6 @@
 
   <body>
     <h1>Map使用</h1>
-    <div class="demo"></div>
     <script>
       var test1 = 1;
       var test2 = 2;
@@ -33,6 +32,13 @@
       };
       console.log(mapseek(mapUse));
 
+      // weakSet和WeakMap
+      /**
+       * 1. 均不可被遍历
+       * 2. 只能存储对象引用，不能存放值 对象值都是被弱引用的，会被垃圾回收机制回收掉
+       * 3. WeakMap 弱引用的只是键名，而不是键值。键值依然是正常引用
+       */
+
       const map = new Map();
       const weakmap = new WeakMap();
 
@@ -47,23 +53,22 @@
       test();
 
       console.log(map, weakmap, "2");
+      //具体使用区别 map weakmap
+      const button = document.querySelector("button");
 
-      // weakSet和WeakMap
-      /**
-       * 1. 均不可被遍历
-       * 2. 只能存储对象引用，不能存放值 对象值都是被弱引用的，会被垃圾回收机制回收掉
-       * 3. WeakMap 弱引用的只是键名，而不是键值。键值依然是正常引用
-       */
+      const result = [button, "你小子"];
+
+      result = null;
+
+      // 上面需要手动释放
+      // 下面这个 节点从 DOM 树中被删除后,垃圾回收程序就可以立即释放其内存,WeakMap 中的键也就不存在了
+
+      const map1 = new WeakMap();
+
+      const button1 = document.querySelector("button");
+
+      map.set(button, "又是你小子");
+      console.log(map1.get(button1)); // 又是你小子
     </script>
-    <style>
-      .demo {
-        width: 0px;
-        height: 0px;
-        border-top: 10px solid red;
-        border-right: 10px solid transparent;
-        border-bottom: 10px solid transparent;
-        border-left: 10px solid transparent;
-      }
-    </style>
   </body>
 </html>
